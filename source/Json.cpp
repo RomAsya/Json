@@ -1,5 +1,6 @@
 #include "Json.hpp"
 
+
 Json::Json(const std::string& s) {
 	int count = 0;
 	switch (s[count]) {
