@@ -1,7 +1,7 @@
 #include <any>
 #include <string>
 
-#include <googletest/gtest.h>
+#include <gtest/gtest.h>
 #include "json.hpp"
 
 namespace {
