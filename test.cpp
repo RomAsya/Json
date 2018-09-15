@@ -6,7 +6,7 @@
 
 namespace {
 
-std::string json_data = "{\"lastname\" : \"Ivanov\", \"firstname\" : \"Ivan\", \"age\" : 25, \"islegal\" : false, \"marks\" : [4,5,5,5,2,3], \"address\" : {\"city\" : \"Moscow\", \"street\" : \"Vozdvijenka\"}}";
+std::string json_data = "{\"lastname\" : \"Ivanov\", \"firstname\" : \"Ivan\", \"age\" : 25, \"islegal\" : false, \"marks\" : [4, 5, 5, 5, 2, 3], \"address\" : {\"city\" : \"Moscow\", \"street\" : \"Vozdvijenka\"}}";
 
 TEST(Json, LoadFromString) {
   Json object(json_data);
