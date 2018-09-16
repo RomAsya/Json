@@ -25,7 +25,27 @@ public:
 	std::any operator[](int index);
 	// Метод возвращает объект класса Json из строки, содержащей Json-данные.
 	static Json parse(const std::string& s) {
-		Json curr(s);
+		std::string str;
+		for (unsigned int i = 0; i < s.length(); i++) {
+			if (s[i] != ' ') {
+				if (s[i] == '\n') continue;
+				if (s[i] == '\t') continue;
+				if (s[i] == ',') {
+					str += s[i];
+					str += ' ';
+					continue;
+				}
+				str += s[i];
+			}
+			else {
+				if ((s[i - 1] == ':') || (s[i + 1] == ':')) {
+					str += s[i];
+					continue;
+				}
+				continue;
+			}
+		}
+		Json curr(str);
 		return curr;
 	};
 	// Метод возвращает объекта класса Json из файла, содержащего Json-данные в текстовом формате.
