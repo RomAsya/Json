@@ -18,7 +18,7 @@ public:
 	// Метод возвращает значение по ключу key, если экземпляр является JSON-объектом.
 	// Значение может иметь один из следующих типов: Json, std::string, double, bool или быть пустым.
 	// Если экземпляр является JSON-массивом, генерируется исключение.
-	std::any& operator[](const std::string& key);
+	std::any operator[](const std::string& key);
 	// Метод возвращает значение по индексу index, если экземпляр является JSON-массивом.
 	// Значение может иметь один из следующих типов: Json, std::string, double, bool или быть пустым.
 	// Если экземпляр является JSON-объектом, генерируется исключение.
@@ -225,7 +225,7 @@ bool Json::is_object() const {
 	return false;
 }
 
-std::any& Json::operator[](const std::string& key) {
+std::any Json::operator[](const std::string& key) {
 	if (array_code.size() > 0) {
 		throw 1;
 	}
