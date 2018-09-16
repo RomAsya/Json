@@ -205,7 +205,7 @@ Json::Json(const std::string& s) {
 
 bool Json::is_array() const {
 	if (array_code.size() > 0) return true;
-	for (int i = 0; i < mean_code.size(); i++) {
+	for (unsigned int i = 0; i < mean_code.size(); i++) {
 		if (mean_code[i].type() == typeid(Json)) {
 			Json json = std::any_cast<Json>(mean_code[i]);
 			if (json.is_array()) return true;
@@ -216,7 +216,7 @@ bool Json::is_array() const {
 
 bool Json::is_object() const {
 	if (mean_code.size() > 0) return true;
-	for (int i = 0; i < array_code.size(); i++) {
+	for (unsigned int i = 0; i < array_code.size(); i++) {
 		if (array_code[i].type() == typeid(Json)) {
 			Json json = std::any_cast<Json>(array_code[i]);
 			if (json.is_object()) return true;
@@ -229,7 +229,7 @@ std::any& Json::operator[](const std::string& key) {
 	if (array_code.size() > 0) {
 		throw 1;
 	}
-	for (int i = 0; i < key_code.size(); i++) {
+	for (unsigned int i = 0; i < key_code.size(); i++) {
 		if (std::any_cast<std::string>(key_code[i]) == key)
 			return mean_code[i];
 	}
