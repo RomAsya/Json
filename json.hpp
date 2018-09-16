@@ -10,7 +10,7 @@ public:
 	std::vector<std::any> mean_code;
 	std::vector<std::any> array_code;
 	// Конструктор из строки, содержащей Json-данные.
-	Json(const std::string& s);
+	Json(const std::string& str);
 	// Метод возвращает true, если данный экземпляр содержит в себе JSON-массив. Иначе false.
 	bool is_array() const;
 	// Метод возвращает true, если данный экземпляр содержит в себе JSON-объект. Иначе false.
@@ -25,34 +25,34 @@ public:
 	std::any& operator[](int index);
 	// Метод возвращает объект класса Json из строки, содержащей Json-данные.
 	static Json parse(const std::string& s) {
-		std::string str;
-		for (unsigned int i = 0; i < s.length(); i++) {
-			if (s[i] != ' ') {
-				if (s[i] == '\n') continue;
-				if (s[i] == '\t') continue;
-				if (s[i] == ',') {
-					str += s[i];
-					str += ' ';
-					continue;
-				}
-				str += s[i];
-			}
-			else {
-				if ((s[i - 1] == ':') || (s[i + 1] == ':')) {
-					str += s[i];
-					continue;
-				}
-				continue;
-			}
-		}
-		Json curr(str);
+		Json curr(s);
 		return curr;
 	};
 	// Метод возвращает объекта класса Json из файла, содержащего Json-данные в текстовом формате.
 	static Json parseFile(const std::string& path_to_file);
 };
 
-Json::Json(const std::string& s) {
+Json::Json(const std::string& str) {
+	std::string s;
+	for (unsigned int i = 0; i < str.length(); i++) {
+		if (str[i] != ' ') {
+			if (str[i] == '\n') continue;
+			if (str[i] == '\t') continue;
+			if (str[i] == ',') {
+				s += str[i];
+				s += ' ';
+				continue;
+			}
+			s += str[i];
+		}
+		else {
+			if ((str[i - 1] == ':') || (str[i + 1] == ':')) {
+				s += str[i];
+				continue;
+			}
+			continue;
+		}
+	}
 	int count = 0;
 	switch (s[count]) {
 	case '{': {
