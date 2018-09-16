@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
 #include "json.hpp"
 
-const char * const json_data = R"(
+namespace {
+
+const std::string json_data = R"(
 {
     "lastname" : "Ivanov",
     "firstname" : "Ivan",
@@ -29,4 +31,6 @@ TEST(Json, LoadFromString) {
   auto address = std::any_cast<Json>(object["address"]);
   EXPECT_EQ(std::any_cast<std::string>(address["city"]), "Moscow");
   EXPECT_EQ(std::any_cast<std::string>(address["street"]), "Vozdvijenka");
+}
+
 }
