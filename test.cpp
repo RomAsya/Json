@@ -1,12 +1,7 @@
-#include <any>
-#include <string>
-
 #include <gtest/gtest.h>
 #include "json.hpp"
 
-namespace {
-
-std::string json_data = R"(
+const char * const json_data = R"(
 {
     "lastname" : "Ivanov",
     "firstname" : "Ivan",
@@ -35,5 +30,3 @@ TEST(Json, LoadFromString) {
   EXPECT_EQ(std::any_cast<std::string>(address["city"]), "Moscow");
   EXPECT_EQ(std::any_cast<std::string>(address["street"]), "Vozdvijenka");
 }
-
-}  // namespace
