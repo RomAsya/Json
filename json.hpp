@@ -18,11 +18,11 @@ public:
 	// Метод возвращает значение по ключу key, если экземпляр является JSON-объектом.
 	// Значение может иметь один из следующих типов: Json, std::string, double, bool или быть пустым.
 	// Если экземпляр является JSON-массивом, генерируется исключение.
-	std::any operator[](const std::string& key);
+	std::any& operator[](const std::string& key);
 	// Метод возвращает значение по индексу index, если экземпляр является JSON-массивом.
 	// Значение может иметь один из следующих типов: Json, std::string, double, bool или быть пустым.
 	// Если экземпляр является JSON-объектом, генерируется исключение.
-	std::any operator[](int index);
+	std::any& operator[](int index);
 	// Метод возвращает объект класса Json из строки, содержащей Json-данные.
 	static Json parse(const std::string& s) {
 		std::string str;
@@ -225,7 +225,7 @@ bool Json::is_object() const {
 	return false;
 }
 
-std::any Json::operator[](const std::string& key) {
+std::any& Json::operator[](const std::string& key) {
 	if (array_code.size() > 0) {
 		throw 1;
 	}
@@ -235,7 +235,7 @@ std::any Json::operator[](const std::string& key) {
 	}
 }
 
-std::any Json::operator[](int index) {
+std::any& Json::operator[](int index) {
 	if (mean_code.size() > 0) {
 		throw 1;
 	}
