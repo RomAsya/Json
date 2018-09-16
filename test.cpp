@@ -3,7 +3,7 @@
 
 namespace {
 
-const char * const json = R"(
+std::string json_data = R"(
 {
     "lastname" : "Ivanov",
     "firstname" : "Ivan",
@@ -19,8 +19,7 @@ const char * const json = R"(
 })";
 
 TEST(Json, LoadFromString) {
-  std::string json_data = json.c_str();
-  Json object(json_data);
+  Json object = Json::parse(json_data);
   EXPECT_EQ(std::any_cast<std::string>(object["lastname"]), "Ivanov");
   EXPECT_EQ(std::any_cast<bool>(object["islegal"]), false);
   EXPECT_EQ(std::any_cast<double>(object["age"]), 25);
