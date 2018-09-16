@@ -6,7 +6,7 @@
 
 namespace {
 
-const char * const json_data = R"(
+std::string json_data = R"(
 {
     "lastname" : "Ivanov",
     "firstname" : "Ivan",
